@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\mic_s\\source\\repos\\SecurityAudit\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5E77E3D-0360-137E-7F84-CD2A90E242E2}|SecurityAudit\\SecurityAudit.csproj|c:\\users\\mic_s\\source\\repos\\securityaudit\\securityaudit\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5E77E3D-0360-137E-7F84-CD2A90E242E2}|SecurityAudit\\SecurityAudit.csproj|solutionrelative:securityaudit\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A5E77E3D-0360-137E-7F84-CD2A90E242E2}|SecurityAudit\\SecurityAudit.csproj|c:\\users\\mic_s\\source\\repos\\securityaudit\\securityaudit\\securityaudit.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{A5E77E3D-0360-137E-7F84-CD2A90E242E2}|SecurityAudit\\SecurityAudit.csproj|solutionrelative:securityaudit\\securityaudit.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5E77E3D-0360-137E-7F84-CD2A90E242E2}|SecurityAudit\\SecurityAudit.csproj|c:\\users\\mic_s\\source\\repos\\securityaudit\\securityaudit\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5E77E3D-0360-137E-7F84-CD2A90E242E2}|SecurityAudit\\SecurityAudit.csproj|solutionrelative:securityaudit\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5E77E3D-0360-137E-7F84-CD2A90E242E2}|SecurityAudit\\SecurityAudit.csproj|c:\\users\\mic_s\\source\\repos\\securityaudit\\securityaudit\\domain\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,19 +42,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "SecurityAudit.csproj",
               "DocumentMoniker": "C:\\Users\\mic_s\\source\\repos\\SecurityAudit\\SecurityAudit\\SecurityAudit.csproj",
               "RelativeDocumentMoniker": "SecurityAudit\\SecurityAudit.csproj",
               "ToolTip": "C:\\Users\\mic_s\\source\\repos\\SecurityAudit\\SecurityAudit\\SecurityAudit.csproj",
               "RelativeToolTip": "SecurityAudit\\SecurityAudit.csproj",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAoAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-06-06T18:41:47.527Z"
+              "WhenOpened": "2026-06-06T18:41:47.527Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -82,7 +83,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\mic_s\\source\\repos\\SecurityAudit\\SecurityAudit\\Program.cs",
               "RelativeDocumentMoniker": "SecurityAudit\\Program.cs",
