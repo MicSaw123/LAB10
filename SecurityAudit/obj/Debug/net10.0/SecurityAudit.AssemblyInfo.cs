@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SecurityAudit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c1697ca7718ec1629549446b671dd453617050b")]
 [assembly: System.Reflection.AssemblyProductAttribute("SecurityAudit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SecurityAudit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

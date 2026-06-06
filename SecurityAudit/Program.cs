@@ -7,7 +7,6 @@ using SecurityAudit.Storage;
 using System.ComponentModel.DataAnnotations;
 
 var builder = WebApplication.CreateBuilder(args);
-
 var apiKey = builder.Configuration["ApiKey"]
     ?? throw new InvalidOperationException("Brak ApiKey w konfiguracji!");
 
