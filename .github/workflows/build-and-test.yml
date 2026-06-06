@@ -29,13 +29,14 @@ jobs:
     - name: Audyt pakietow NuGet
       shell: pwsh
       run: |
-        $out = dotnet list ${{ env.PROJECT_PATH }} package --vulnerable --include-transitive 2>&1
-        if ($out -match "vulnerable packages") {
-          Write-Error "Wykryto podatne pakiety! Sprawdz raport."
-          Write-Output $out
+        $out = dotnet list ${{ env.PROJECT_PATH }} package --vulnerable --include-transitive
+        Write-Output $out
+        
+        if ($out -like "*Critical*" -or $out -like "*High*" -or $out -like "*Moderate*") {
+          Write-Error "CRITICAL: Wykryto rzeczywiste podatnosci w zaleznosciach NuGet!"
           exit 1
         }
-        Write-Output "Brak znanych podatnosci."
+        Write-Output "Sukces: Brak znanych podatnosci w pakietach."
 
     - name: Build z analizatorami (SAST)
       run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release /p:TreatWarningsAsErrors=true
