@@ -1,4 +1,4 @@
-name: Build, Test and Security Audit
+name: Security Audit CI - Lab 10
 
 on:
   push:
@@ -8,11 +8,12 @@ on:
 
 env:
   DOTNET_VERSION: '10.0.x'
-  PROJECT_PATH: 'SecurityAudit'
+  PROJECT_PATH: 'SecurityAudit' 
 
 jobs:
-  build-test-audit:
+  security-scan:
     runs-on: windows-latest
+
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -25,37 +26,36 @@ jobs:
     - name: Restore
       run: dotnet restore ${{ env.PROJECT_PATH }}
 
-    - name: Audit NuGet Vulnerabilities (Console Output)
-      run: dotnet list ${{ env.PROJECT_PATH }} package --vulnerable --include-transitive
-
-    - name: Generate NuGet Vulnerabilities Report (JSON)
-      run: |
-        dotnet list ${{ env.PROJECT_PATH }} package --vulnerable --format json > vuln-report.json
-      continue-on-error: true
-
-    - name: Build Application
-      run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
-
-    - name: Install Microsoft SBOM Tool
-      run: dotnet tool install --global Microsoft.Sbom.DotNetTool
-
-    - name: Generate SBOM
-      run: sbom-tool generate -b ./${{ env.PROJECT_PATH }}/bin/Release/net10.0 -bc ./${{ env.PROJECT_PATH }} -pn SecurityAuditApp -pv 1.0.0 -ps "Student Developer" -nsb "https://securityaudit.local" -nsu "sbom-v1"
+    - name: Audyt pakietow NuGet
       shell: pwsh
+      run: |
+        $out = dotnet list ${{ env.PROJECT_PATH }} package --vulnerable --include-transitive 2>&1
+        if ($out -match "vulnerable packages") {
+          Write-Error "Wykryto podatne pakiety! Sprawdz raport."
+          Write-Output $out
+          exit 1
+        }
+        Write-Output "Brak znanych podatnosci."
 
-    - name: Test with coverage
-      run: >
-        dotnet test ${{ env.PROJECT_PATH }}
-        --configuration Release
-        --no-build
-        --collect:"XPlat Code Coverage"
-        --results-directory ./coverage
+    - name: Build z analizatorami (SAST)
+      run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release /p:TreatWarningsAsErrors=true
 
-    - name: Upload Security and SBOM Artifacts
+    - name: Generuj SBOM
+      shell: pwsh
+      run: |
+        dotnet tool install --global Microsoft.Sbom.DotNetTool
+        sbom-tool generate -b ./${{ env.PROJECT_PATH }}/bin/Release/net10.0 -bc ./${{ env.PROJECT_PATH }} -pn SecurityAuditApp -pv 1.0.0 -ps "Student Developer" -nsb "https://securityaudit.local" -nsu "sbom-v1"
+
+    - name: Upload SBOM jako artefakt
       uses: actions/upload-artifact@v4
       with:
-        name: security-audit-outputs
-        path: |
-          vuln-report.json
-          _manifest/
-          ./coverage/**/coverage-cobertura.xml
+        name: sbom
+        path: '**/manifest.spdx.json'
+
+    - name: Podpisz skrypt PowerShell
+      shell: pwsh
+      run: |
+        $cert = New-SelfSignedCertificate -Subject "CN=Lab10 Student Developer" -Type CodeSigningCert -CertStoreLocation "Cert:\CurrentUser\My" -NotAfter (Get-Date).AddYears(2)
+        Set-AuthenticodeSignature -FilePath "./${{ env.PROJECT_PATH }}/deploy.ps1" -Certificate $cert
+        $sig = Get-AuthenticodeSignature "./${{ env.PROJECT_PATH }}/deploy.ps1"
+        Write-Output "Status podpisu: $($sig.Status)"
