@@ -40,15 +40,7 @@ jobs:
       run: dotnet tool install --global Microsoft.Sbom.DotNetTool
 
     - name: Generate SBOM
-      run: |
-        sbom-tool generate `
-        -b ./${{ env.PROJECT_PATH }}/bin/Release/net10.0 `
-        -bc ./${{ env.PROJECT_PATH }} `
-        -pn SecurityAudit`
-        -pv 1.0.0 `
-        -ps "Student Developer" `
-        -nsb "https://securityaudit.local" `
-        -nsu "sbom-v1"
+      run: sbom-tool generate -b ./${{ env.PROJECT_PATH }}/bin/Release/net10.0 -bc ./${{ env.PROJECT_PATH }} -pn SecurityAuditApp -pv 1.0.0 -ps "Student Developer" -nsb "https://securityaudit.local" -nsu "sbom-v1"
       shell: pwsh
 
     - name: Test with coverage
