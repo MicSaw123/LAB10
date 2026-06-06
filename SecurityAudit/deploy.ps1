@@ -1,0 +1,1 @@
+Write-Output "Uruchamianie bezpiecznego wdrozenia..."
