@@ -1,0 +1,4 @@
+C:\Users\mic_s\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.7\build\..\_framework\blazor.server.js
+C:\Users\mic_s\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.7\build\..\_framework\blazor.web.js
+C:\Users\mic_s\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.7\_framework\blazor.server.js
+C:\Users\mic_s\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.7\_framework\blazor.web.js

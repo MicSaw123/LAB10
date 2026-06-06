@@ -1,0 +1,44 @@
+﻿@page "/xss-test"
+@using Ganss.Xss
+
+<h3>Ćwiczenie 6.2: XSS i zabezpieczenia Blazor</h3>
+
+<div class="mb-3">
+    <label class="form-label">Wprowadź tekst (symulacja ataku XSS):</label>
+    <input @bind="userInput" class="form-control" style="width: 100%;" />
+</div>
+
+<hr />
+
+<div class="card my-3">
+    <div class="card-header bg-success text-white">
+        <strong>1. Bezpieczne: Blazor automatycznie enkoduje HTML</strong>
+    </div>
+    <div class="card-body">
+        <p>@userInput</p>
+    </div>
+</div>
+
+<div class="card my-3">
+    <div class="card-header bg-danger text-white">
+        <strong>2. NIEBEZPIECZNE: renderuje surowy HTML z niezaufanego zrodla</strong>
+    </div>
+    <div class="card-body">
+        <p>@((MarkupString)userInput)</p>
+    </div>
+</div>
+
+<div class="card my-3">
+    <div class="card-header bg-info text-white">
+        <strong>3. Jesli HTML jest potrzebny --- najpierw sanityzuj</strong>
+    </div>
+    <div class="card-body">
+        <p>@((MarkupString)SafeHtml)</p>
+    </div>
+</div>
+
+@code {
+    private string userInput = "<script>alert('Atak XSS!');</script>Witaj <b style='color:red;'>Jakub</b>";
+
+    private string SafeHtml => new HtmlSanitizer().Sanitize(userInput ?? "");
+}
