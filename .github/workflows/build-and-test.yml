@@ -44,10 +44,11 @@ jobs:
         sbom-tool generate `
         -b ./${{ env.PROJECT_PATH }}/bin/Release/net10.0 `
         -bc ./${{ env.PROJECT_PATH }} `
-        -pn SecurityAuditApp `
+        -pn SecurityAudit`
         -pv 1.0.0 `
         -ps "Student Developer" `
-        -ns "https://securityaudit.local/sbom"
+        -nsb "https://securityaudit.local" `
+        -nsu "sbom-v1"
       shell: pwsh
 
     - name: Test with coverage
